@@ -47,16 +47,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         (pImgs?.count)!
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath)
-//        let url_image = URL(string:)
-//        cell.imageView?.sd_setImage(with: url_image)
+        let imageView = UIImageView(frame: cell.contentView.bounds)
+        imageView.contentMode = .scaleAspectFit
+        let imgUrl = URL(string: pImgs![indexPath.item])
+        imageView.sd_setImage(with: imgUrl)
+        // Remove any previous image views from the cell's contentView
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        cell.contentView.addSubview(imageView)
+        
         return cell
     }
     
     
     @IBAction func addToFavorite(_ sender: Any) {
+        
     }
     
 

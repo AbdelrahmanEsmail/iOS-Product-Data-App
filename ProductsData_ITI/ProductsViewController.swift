@@ -47,9 +47,14 @@ class ProductsViewController:
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath)
-        cell.imageView?.image = UIImage(systemName: "iphone.gen1")
-        cell.textLabel?.text = productsArray[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
+        cell.tableLbl.text = productsArray[indexPath.row].title
+        let tableImgs = productsArray[indexPath.row].imgs
+        for img in tableImgs! {
+            let imgUrl = URL(string: img)
+            cell.tableImgView.sd_setImage(with: imgUrl)
+        }
+        cell.tableImgView.layer.cornerRadius = 35
         return cell
     }
 

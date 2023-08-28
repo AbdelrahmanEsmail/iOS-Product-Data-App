@@ -17,6 +17,7 @@
 		CCAE1EC02A9C9DB200F9DE17 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE1EBF2A9C9DB200F9DE17 /* ProductsViewController.swift */; };
 		CCAE1EC22A9C9E8F00F9DE17 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE1EC12A9C9E8F00F9DE17 /* Product.swift */; };
 		CCAE1EC52A9CCB0700F9DE17 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CCAE1EC42A9CCB0700F9DE17 /* SDWebImage */; };
+		CCAE1EC72A9D015B00F9DE17 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE1EC62A9D015B00F9DE17 /* ProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		CCAE1EB92A9C91E400F9DE17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCAE1EBF2A9C9DB200F9DE17 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		CCAE1EC12A9C9E8F00F9DE17 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		CCAE1EC62A9D015B00F9DE17 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				CCAE1EAA2A9C91E300F9DE17 /* SceneDelegate.swift */,
 				CCAE1EAC2A9C91E300F9DE17 /* ViewController.swift */,
 				CCAE1EAE2A9C91E300F9DE17 /* Main.storyboard */,
+				CCAE1EC62A9D015B00F9DE17 /* ProductTableViewCell.swift */,
 				CCAE1EBF2A9C9DB200F9DE17 /* ProductsViewController.swift */,
 				CCAE1EC12A9C9E8F00F9DE17 /* Product.swift */,
 				CCAE1EB42A9C91E400F9DE17 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 			files = (
 				CCAE1EB32A9C91E300F9DE17 /* ProductsData_ITI.xcdatamodeld in Sources */,
 				CCAE1EAD2A9C91E300F9DE17 /* ViewController.swift in Sources */,
+				CCAE1EC72A9D015B00F9DE17 /* ProductTableViewCell.swift in Sources */,
 				CCAE1EA92A9C91E300F9DE17 /* AppDelegate.swift in Sources */,
 				CCAE1EAB2A9C91E300F9DE17 /* SceneDelegate.swift in Sources */,
 				CCAE1EC02A9C9DB200F9DE17 /* ProductsViewController.swift in Sources */,
