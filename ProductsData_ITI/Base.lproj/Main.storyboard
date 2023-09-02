@@ -128,6 +128,7 @@
                     </view>
                     <connections>
                         <outlet property="ImgsCollectionView" destination="ah2-hL-UXK" id="Tvg-bi-Jtx"/>
+                        <outlet property="addTofavBtn" destination="d5z-kg-tYm" id="wWx-cx-B8r"/>
                         <outlet property="brandLbl" destination="WeK-4a-YCF" id="92R-IX-d4C"/>
                         <outlet property="descLbl" destination="maa-bd-ZX1" id="wNV-so-MR0"/>
                         <outlet property="discountLbl" destination="88a-bO-d5i" id="KEa-ip-Ngu"/>
@@ -139,22 +140,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6588.5496183206105" y="419.71830985915494"/>
+            <point key="canvasLocation" x="6590" y="420"/>
         </scene>
         <!--Favorite-->
         <scene sceneID="sRb-bV-121">
             <objects>
-                <viewController id="OzX-d0-Vyi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteViewController" id="OzX-d0-Vyi" customClass="FavoriteViewController" customModule="ProductsData_ITI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="07L-Cr-WhS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavoriteViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YOn-Qu-gdS">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavProductCell" id="Kma-QV-z1e">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kma-QV-z1e" id="HGL-sv-me6">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OzX-d0-Vyi" id="s3l-05-YUY"/>
+                                    <outlet property="delegate" destination="OzX-d0-Vyi" id="PUj-Io-fWK"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qhf-9n-pUt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qhf-9n-pUt" firstAttribute="bottom" secondItem="YOn-Qu-gdS" secondAttribute="bottom" id="46L-QQ-B1r"/>
+                            <constraint firstItem="qhf-9n-pUt" firstAttribute="trailing" secondItem="YOn-Qu-gdS" secondAttribute="trailing" id="fDu-T2-ksg"/>
+                            <constraint firstItem="YOn-Qu-gdS" firstAttribute="top" secondItem="qhf-9n-pUt" secondAttribute="top" id="lyr-Tn-Wcw"/>
+                            <constraint firstItem="YOn-Qu-gdS" firstAttribute="leading" secondItem="qhf-9n-pUt" secondAttribute="leading" id="zHr-bh-nTB"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorite" selectedImage="heart.circle" catalog="system" id="8EC-2N-WpL">
                         <imageReference key="image" image="heart.circle.fill" catalog="system" variableValue="1"/>
                         <color key="badgeColor" systemColor="systemPinkColor"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="favTableView" destination="YOn-Qu-gdS" id="JmS-nm-x7M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hsf-2v-aek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,23 +212,23 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1xF-jf-9TM">
                                                     <rect key="frame" x="25" y="15" width="70" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="1xF-jf-9TM" secondAttribute="height" multiplier="1:1" id="V9z-6D-1z7"/>
+                                                        <constraint firstAttribute="height" constant="70" id="Biv-5O-VuF"/>
                                                         <constraint firstAttribute="width" constant="70" id="gLA-xp-mMo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fp7-ld-nWV">
-                                                    <rect key="frame" x="105" y="39.333333333333336" width="43.666666666666657" height="21.666666666666664"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fp7-ld-nWV">
+                                                    <rect key="frame" x="105" y="39.333333333333336" width="278" height="21.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1xF-jf-9TM" firstAttribute="centerY" secondItem="JqJ-nL-ffk" secondAttribute="centerY" id="CUa-qd-0yc"/>
                                                 <constraint firstItem="1xF-jf-9TM" firstAttribute="centerY" secondItem="JqJ-nL-ffk" secondAttribute="centerY" id="IoF-kf-unA"/>
                                                 <constraint firstItem="fp7-ld-nWV" firstAttribute="leading" secondItem="1xF-jf-9TM" secondAttribute="trailing" constant="10" id="auT-Jh-lyq"/>
-                                                <constraint firstItem="fp7-ld-nWV" firstAttribute="centerY" secondItem="JqJ-nL-ffk" secondAttribute="centerY" id="iG0-CB-ff5"/>
+                                                <constraint firstAttribute="trailing" secondItem="fp7-ld-nWV" secondAttribute="trailing" constant="10" id="iYF-Yk-Tzn"/>
                                                 <constraint firstItem="1xF-jf-9TM" firstAttribute="leading" secondItem="JqJ-nL-ffk" secondAttribute="leadingMargin" constant="5" id="o5s-UX-hVB"/>
+                                                <constraint firstItem="fp7-ld-nWV" firstAttribute="centerY" secondItem="1xF-jf-9TM" secondAttribute="centerY" id="ycM-LE-NHK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -253,7 +283,7 @@
         <scene sceneID="D7B-qE-iUC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EI5-ox-Eip" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Products" image="info" catalog="system" selectedImage="info.windshield" id="SnM-7f-Dap"/>
+                    <tabBarItem key="tabBarItem" title="Products" image="info" catalog="system" selectedImage="info.circle" id="SnM-7f-Dap"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zdX-CZ-f84">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -274,7 +304,7 @@
         <image name="heart.circle" catalog="system" width="128" height="123"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
         <image name="info" catalog="system" width="93" height="128"/>
-        <image name="info.windshield" catalog="system" width="128" height="70"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

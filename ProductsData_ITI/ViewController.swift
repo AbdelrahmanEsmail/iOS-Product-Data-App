@@ -8,10 +8,12 @@
 import UIKit
 import SDWebImage
 
+
+
+// Product Details View
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
     
-
+    let data = UserDefaults.standard
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var brandLbl: UILabel!
@@ -20,8 +22,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var ratingLbl: UILabel!
     @IBOutlet weak var ImgsCollectionView: UICollectionView!
+    @IBOutlet weak var addTofavBtn: UIButton!
     
-    var productsArray: [Product] = []
+    var productsArray: [ProductModel] = []
     var pTitle: String?
     var pDesc: String?
     var pBrand: String?
@@ -30,6 +33,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var pDiscount: String?
     var pRating: String?
     var pImgs: [String]?
+    
     
     
     override func viewDidLoad() {
@@ -54,7 +58,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         imageView.contentMode = .scaleAspectFit
         let imgUrl = URL(string: pImgs![indexPath.item])
         imageView.sd_setImage(with: imgUrl)
-        // Remove any previous image views from the cell's contentView
         for subview in cell.contentView.subviews {
             subview.removeFromSuperview()
         }
@@ -64,9 +67,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
-    
-    @IBAction func addToFavorite(_ sender: Any) {
-        
+    @objc @IBAction func addToFavorite(_ sender: Any) {
+        var favProducts = UserDefaults.standard.stringArray(forKey: "favProducts") ?? []
+        favProducts.append(pTitle!)
+        UserDefaults.standard.set(favProducts, forKey: "favProducts")
+        addTofavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
     }
     
 

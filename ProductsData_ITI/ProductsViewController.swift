@@ -6,40 +6,66 @@
 //
 
 import UIKit
+import SystemConfiguration
+
 
 class ProductsViewController:
     UIViewController,UITableViewDelegate,UITableViewDataSource {
-    var productsArray: [Product] = []
+    var productsArray: [ProductModel] = []
     @IBOutlet weak var productsTable: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request = URL(string: "https://dummyjson.com/products")
-        let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: request!) { data, response, error in
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String,Any>
-                let products = json["products"] as! [Dictionary<String,Any>]
-                for product in products {
-                    var productObj = Product()
-                    productObj.title = product["title"] as? String
-                    productObj.desc = product["description"] as? String
-                    productObj.brand = product["brand"] as? String
-                    productObj.price = product["price"] as? Int
-                    productObj.stock = product["stock"] as? Int
-                    productObj.rating = product["rating"] as? Double
-                    productObj.discount = product["discountPercentage"] as? Double
-                    productObj.imgs = product["images"] as? [String]
-                    self.productsArray.append(productObj)
+        
+        if isInternetAvailable() {
+                    parseData()
+                } else {
+                    let alert = UIAlertController(title: "No Internet", message: "No internet connection. Data parsing is not possible.", preferredStyle: .alert)
+                    self.present(alert,animated: true)
+                    let okButton = UIAlertAction(title: "Ok", style: .default)
+                    alert.addAction(okButton)
                 }
-                DispatchQueue.main.async {
-                    self.productsTable.reloadData() // Reload data once after processing
-                }
-            }catch{
-                print("Couldn't parse the data")
+        
+        func isInternetAvailable() -> Bool {
+            guard let reachability = SCNetworkReachabilityCreateWithName(nil, "https://dummyjson.com/products") else {
+                return false
             }
+            var flags = SCNetworkReachabilityFlags()
+            SCNetworkReachabilityGetFlags(reachability, &flags)
+            return flags.contains(.reachable)
         }
-        dataTask.resume()
+        
+        func parseData() {
+            let request = URL(string: "https://dummyjson.com/products")
+            let session = URLSession(configuration: .default)
+            let dataTask = session.dataTask(with: request!) { data, response, error in
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String,Any>
+                    let products = json["products"] as! [Dictionary<String,Any>]
+                    for product in products {
+                        var productObj = ProductModel()
+                        productObj.title = product["title"] as? String
+                        productObj.desc = product["description"] as? String
+                        productObj.brand = product["brand"] as? String
+                        productObj.price = product["price"] as? Int
+                        productObj.stock = product["stock"] as? Int
+                        productObj.rating = product["rating"] as? Double
+                        productObj.discount = product["discountPercentage"] as? Double
+                        productObj.imgs = product["images"] as? [String]
+                        self.productsArray.append(productObj)
+                    }
+                    DispatchQueue.main.async {
+                        self.productsTable.reloadData() // Reload data once after processing
+                    }
+                }catch{
+                    print("Couldn't parse the data")
+                }
+            }
+            dataTask.resume()
+            }
+        
+        
+
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,4 +96,11 @@ class ProductsViewController:
         ViewController.pImgs = productsArray[indexPath.row].imgs
         navigationController?.pushViewController(ViewController, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+
+    
 }
